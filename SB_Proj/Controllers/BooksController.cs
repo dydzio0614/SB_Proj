@@ -46,8 +46,23 @@ namespace SB_Proj.Controllers
             return Ok(book);
         }
 
+        // POST: api/Books
+        [HttpPost]
+        public async Task<IActionResult> PostBook([FromBody] Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Book.Add(book);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetBook", new { id = book.BookID }, book);
+        }
+
         // PUT: api/Books/5
-        [HttpPut("{id}")]
+        /*[HttpPut("{id}")]
         public async Task<IActionResult> PutBook([FromRoute] int id, [FromBody] Book book)
         {
             if (!ModelState.IsValid)
@@ -79,25 +94,10 @@ namespace SB_Proj.Controllers
             }
 
             return NoContent();
-        }
-
-        // POST: api/Books
-        [HttpPost]
-        public async Task<IActionResult> PostBook([FromBody] Book book)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.Book.Add(book);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBook", new { id = book.BookID }, book);
-        }
+        }*/
 
         // DELETE: api/Books/5
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace SB_Proj.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(book);
-        }
+        }*/
 
         private bool BookExists(int id)
         {
