@@ -55,6 +55,20 @@ namespace SB_Proj.Controllers
                 return BadRequest(ModelState);
             }
 
+            //update existing book if adding new with same data
+            /*var matchingBooks = from existingBook in _context.Book where
+                         (existingBook.Title.ToLower() == book.Title.ToLower()
+                         && existingBook.Price == book.Price 
+                         && existingBook.ReleaseDate.Date == book.ReleaseDate.Date)
+                         select existingBook;
+
+            if(matchingBooks.Count() == 1)
+            {
+                var bookToUpdate = matchingBooks.First();
+                bookToUpdate.Amount++;
+                return PutBook(bookToUpdate.BookID, book);
+            }*/
+
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
 
