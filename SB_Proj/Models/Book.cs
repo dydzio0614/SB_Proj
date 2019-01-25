@@ -12,6 +12,9 @@ namespace SB_Proj.Models
         [Key]
         public int BookID { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 3)]
+        public string Title { get; set; }
+        [Required]
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
         [Required]
