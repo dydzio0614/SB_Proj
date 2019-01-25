@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SB_Proj.Models;
 
 namespace SB_Proj.Migrations
 {
     [DbContext(typeof(SBProjContext))]
-    partial class SBProjContextModelSnapshot : ModelSnapshot
+    [Migration("20190125111318_PriceUpdate")]
+    partial class PriceUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,8 +29,7 @@ namespace SB_Proj.Migrations
 
                     b.Property<int>("Amount");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(7, 2)");
+                    b.Property<decimal>("Price");
 
                     b.Property<DateTime>("ReleaseDate");
 
