@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SB_Proj.Models;
+using SB_Proj.ViewModels;
 
 namespace SB_Proj.Controllers
 {
@@ -22,9 +23,9 @@ namespace SB_Proj.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public IEnumerable<Book> GetBook()
+        public IEnumerable<ViewBook> GetBook()
         {
-            return _context.Book;
+            return _context.Book.Select(x => new ViewBook(x.BookID, x.Title, x.ReleaseDate, x.Price, x.Amount));
         }
 
         // GET: api/Books/5
@@ -43,7 +44,7 @@ namespace SB_Proj.Controllers
                 return NotFound();
             }
 
-            return Ok(book);
+            return Ok(new ViewBook(book.BookID, book.Title, book.ReleaseDate,book.Price, book.Amount));
         }
 
         // POST: api/Books
