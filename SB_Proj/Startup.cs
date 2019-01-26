@@ -40,6 +40,8 @@ namespace SB_Proj
                     });
             });
 
+            services.AddSignalR();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<SBProjContext>(options =>
@@ -61,6 +63,11 @@ namespace SB_Proj
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
             app.UseMvc();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
         }
     }
 }
