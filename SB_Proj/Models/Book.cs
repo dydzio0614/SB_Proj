@@ -12,7 +12,7 @@ namespace SB_Proj.Models
         [Key]
         public int BookID { get; set; }
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Invalid title length!")]
         public string Title { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -20,6 +20,7 @@ namespace SB_Proj.Models
         [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(7, 2)")]
+        [RegularExpression(@"^\d+(\.\d{2})$", ErrorMessage = "Invalid price format!")]
         public decimal Price { get; set; }
         [Required]
         [Range(1, int.MaxValue)]
